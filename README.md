@@ -4,7 +4,7 @@ This gem demonstrates the calculation of sales taxes for various kinds of line i
 
 ## Documentation
 
-TODO: Add documentation index here
+- [Domain model](docs/domain_model.md)
 
 ## Installation
 
