@@ -5,8 +5,8 @@ FactoryGirl.define do
       price Money.new(200)
     end
 
-    product { build :product }
-    quantity 5
+    product { build :product, price: price }
+    quantity 1
 
     initialize_with { new(product, quantity) }
 

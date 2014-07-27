@@ -25,14 +25,14 @@ describe Domain::LineItem do
 
   describe '#total_amount' do
     it 'calculates the total value of the line item' do
-      line_item = build :taxable_line_item
+      line_item = build :taxable_line_item, quantity: 5
       expect(line_item.total_amount).to eq(Money.new(1000))
     end
   end
 
   describe '#total_tax' do
     it 'calculates the total amount of tax included in the line item' do
-      line_item = build :taxable_line_item
+      line_item = build :taxable_line_item, quantity: 5
       expect(line_item.total_tax).to eq(Money.new(100))
     end
   end
@@ -40,8 +40,8 @@ describe Domain::LineItem do
   describe '#unit_tax' do
     describe 'tax rounding' do
       it 'rounds low values up to the nearest 5 cents' do
-        line_item = build :taxable_line_item, price: Money.new(110)
-        expect(line_item.unit_tax).to eq(Money.new(15))
+        line_item = build :taxable_line_item, price: Money.new(310)
+        expect(line_item.unit_tax).to eq(Money.new(35))
       end
 
       it 'rounds median values up to the nearest 5 cents' do
