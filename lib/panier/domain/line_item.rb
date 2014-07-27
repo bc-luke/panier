@@ -24,9 +24,10 @@ module Panier
       # @param quantity [Integer] The number of products represented.
       def initialize(product, quantity)
         @product = product
+        self.quantity = quantity
+        @rounding_strategy = RoundUpRounding.new(TAX_ROUNDING_VALUE)
         @unit_amount = product.price
         @tax_classes = product.tax_classes
-        self.quantity = quantity
       end
 
       ##
@@ -49,7 +50,7 @@ module Panier
       def unit_tax
         tax = Money.new(0)
         tax_classes.each do |tax_class|
-          class_tax = round_tax(tax_class.rate * unit_amount)
+          class_tax = @rounding_strategy.round(tax_class.rate * unit_amount)
           tax += class_tax
         end
         tax
@@ -63,18 +64,6 @@ module Panier
         end
         fail ArgumentError, ':quantity must be non-negative' if quantity < 0
         @quantity = quantity
-      end
-
-      ##
-      # Rounds tax up to the nearest TAX_ROUNDING_VALUE.
-      #
-      # @param tax [Money] The amount of tax to be rounded.
-      #
-      def round_tax(tax)
-        unless tax % TAX_ROUNDING_VALUE == Money.zero
-          tax += Money.new(TAX_ROUNDING_VALUE) - tax % TAX_ROUNDING_VALUE
-        end
-        tax
       end
     end
   end
