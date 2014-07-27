@@ -7,16 +7,19 @@ module Panier
     # that allow taxes to be calculated accurately.
     #
     class Product
+      attr_accessor :name, :tax_classes
       attr_reader :price
-      attr_accessor :tax_classes
 
       ##
-      # Initializes the product using the given price and optional tax classes.
+      # Initializes the product using the given name, price and optional tax
+      # classes.
       #
+      # @param name [String]
       # @param price [Money]
       # @param tax_classes [Array]
       #
-      def initialize(price, tax_classes = [])
+      def initialize(name, price, tax_classes = [])
+        @name = name
         self.price = price
         @tax_classes = tax_classes
       end

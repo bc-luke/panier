@@ -1,5 +1,4 @@
 # Encoding: utf-8
-
 require 'money'
 
 module Panier
@@ -14,7 +13,7 @@ module Panier
       #
       TAX_ROUNDING_VALUE = 5
 
-      attr_reader :product, :quantity, :unit_amount, :tax_classes
+      attr_reader :product, :quantity, :unit_amount, :tax_classes, :description
 
       ##
       # Initializes the line such that it represents the given quantity of
@@ -26,8 +25,9 @@ module Panier
         @product = product
         self.quantity = quantity
         @rounding_strategy = RoundUpRounding.new(TAX_ROUNDING_VALUE)
+        @description = product.name
         @unit_amount = product.price
-        @tax_classes = product.tax_classes
+        @tax_classes = product.tax_classes.dup
       end
 
       ##
@@ -42,6 +42,21 @@ module Panier
       #
       def total_tax
         unit_tax * quantity
+      end
+
+      ##
+      # Calculates the total value of the line item including tax.
+      #
+      # @return [Money] The total value of the line item including tax.
+      def total_amount_inc_tax
+        unit_amount_inc_tax * quantity
+      end
+
+      ##
+      # Calculates the value of a single unit including tax.
+      #
+      def unit_amount_inc_tax
+        unit_amount + unit_tax
       end
 
       ##
