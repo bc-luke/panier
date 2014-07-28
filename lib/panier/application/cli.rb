@@ -36,7 +36,7 @@ module Panier
       # Prints a welcome message and instructions about how to quit.
       #
       def print_welcome
-        puts "Welcome to Panier.\n"
+        puts "Welcome to Panier #{Panier::VERSION}.\n"
         puts 'Press Ctrl+C to exit.'
       end
 
