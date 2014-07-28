@@ -11,8 +11,16 @@ With regard to the given coding exercise, the following assumptions have been ma
 * We are interested in calculating tax for the purposes of generating an itemised receipt.
 * We assume a preexisting product catalog, where each product contains one more more tax classes.
 * Products may be selected by the shopper from the preexisting product catalog. This catalog is limited to the items in the test data. Unknown items are ignored.
-* The product name is the same for input and output. Some changes to input data had to be made to allow for discrepancies. TODO: Name the changes.
+* The product name is the same for input and output. Some changes to input data had to be made to allow for discrepancies.
 * There are some products with the same name and different prices. We can assume that these items are available in various sizes.
+
+## Ruby version
+
+The gem has been tested in the latest version of Ruby (2.1.2 at the time of writing) only. Older versions should work but have not been tested.
+
+## Testing
+
+An interesting spec is found in the [`sales_tax_service_spec.rb`](../spec/panier/application/sales_tax_service_spec.rb). It demonstrates the successful processing of all the examples found in the [Examples](examples.md) document.
 
 ## Design considerations
 
