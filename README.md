@@ -4,7 +4,14 @@ This gem demonstrates the calculation of sales taxes for various kinds of line i
 
 ## Documentation
 
+- [Application](docs/application.md)
 - [Domain model](docs/domain_model.md)
+- [Implementation notes](docs/implementation_notes.md)
+- [Examples](docs/examples.md)
+
+## Requirements
+
+* Ruby 2.1.2+
 
 ## Installation
 
